@@ -17,20 +17,8 @@ for line in lines:
 # If the counter is greater than half, then 1 is the most common bit, otherwise 0
 half = len(lines) / 2
 
-# Start empty strings that we'll fill in
-gamma_rate = ''
-epsilon_rate = ''
-
-for counter in counters:
-    if counter > half:
-        gamma_rate += '1'
-        epsilon_rate += '0'
-    else:
-        gamma_rate += '0'
-        epsilon_rate += '1'
-
-# Now convert the bit string to a decimal value
-gamma_rate = int(gamma_rate, 2)
-epsilon_rate = int(epsilon_rate, 2)
+# Compute the rates using a joined list comprehension, then cast to integer in base 2
+gamma_rate = int(''.join(['1' if counter > half else '0' for counter in counters]), 2)
+epsilon_rate = int(''.join(['0' if counter > half else '1' for counter in counters]), 2)
 
 print(f"Power is {gamma_rate * epsilon_rate}")
