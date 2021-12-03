@@ -1,10 +1,10 @@
 ## General
 # Read and format the data in a convenient way
-from os import extsep
-
-
 with open('input_data.txt', 'r') as f:
     lines = [line.strip() for line in f.readlines()]
+
+
+## Part 1
 
 # Make a list of counters starting at 0 for each position on the string
 counters = [0 for _ in lines[0]]
