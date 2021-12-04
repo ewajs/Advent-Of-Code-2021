@@ -39,6 +39,7 @@ class Board:
         return self.has_complete_column() or self.has_complete_row()
 
     def unmarked_sum(self):
+        '''Sum all unmarked numbers in each row, and then sum all of those sums to get the sum of all unmarked numbers'''
         return sum(sum([int(cell) for j, cell in enumerate(row) if not self.marks[i][j]]) for i, row in enumerate(self.board))
     
     @classmethod
