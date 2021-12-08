@@ -29,6 +29,7 @@ amount = sum(1 for output in outputs if any(same_length(output, digit) for digit
 print(f"Digits 1, 4, 7, or 8 appear {amount} times.")
 
 ## Part 2
+# I feel there's a smarter solution I'm not seeing.
 
 def infer_value(signals, outputs):
     # First assign the obvious ones
@@ -62,7 +63,4 @@ def infer_value(signals, outputs):
 
 sum_of_decoded_outputs = sum(infer_value(line['signals'], line['outputs']) for line in signals_and_outputs)
 
-print(sum_of_decoded_outputs)
-
-
-#print(sum_of_decoded_outputs)
+print(f"{sum_of_decoded_outputs} is the sum of the decoded outputs")
