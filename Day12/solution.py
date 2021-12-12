@@ -51,6 +51,7 @@ print(f"There are {len(paths_to_end)} paths from start to end.")
 ## Part 2
 
 # Very much the same but now we track with a boolean if we can revisit a small cave (lowercase)
+# And a dictionary to count visits instead of a simple set.
 
 # Our traversal Depth First Search function
 def dfs2(node, current_path, visited, paths_to_end):
