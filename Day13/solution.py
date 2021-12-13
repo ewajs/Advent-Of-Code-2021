@@ -4,7 +4,7 @@ with open('input_data.txt', 'r') as f:
     raw_dots, raw_instructions  = f.read().split('\n\n')
 
 # Cast to integer and convert to a set of tuples
-a_dots = set(tuple(map(int, raw_dot.split(','))) for raw_dot in raw_dots.split('\n'))
+dots = set(tuple(map(int, raw_dot.split(','))) for raw_dot in raw_dots.split('\n'))
 
 # Convert the value to an integer
 instructions = [(coordinate, int(value)) for coordinate, value in [
@@ -20,8 +20,6 @@ Y = 1
 
 def fold(dots, instruction):
     # We'll leverage sets to handle the dot duplication for us
-    x_max = max(dot[X] for dot in dots)
-    y_max = max(dot[Y] for dot in dots)
     value = instruction[1]
     # To fold we just create a new set with a coordinate transform
     # It looks like the problem ensures we're always folding 
@@ -31,7 +29,7 @@ def fold(dots, instruction):
     elif instruction[0] == 'y':
         return set(dot if dot[Y] < value else (dot[X], 2 * value - dot[Y]) for dot in dots)
 
-print(f"There are {len(fold(a_dots, instructions[0]))} after doing the first fold")
+print(f"There are {len(fold(dots, instructions[0]))} after doing the first fold")
 
 ## Part 2
 
@@ -39,7 +37,7 @@ print(f"There are {len(fold(a_dots, instructions[0]))} after doing the first fol
 # all folds so we'll use our sets and then transform that into something easy to
 # print.
 
-final_fold = a_dots
+final_fold = dots
 for instruction in instructions:
     final_fold = fold(final_fold, instruction)
 
