@@ -20,16 +20,17 @@ x_limit, y_limit = max(p[X] for p in graph.keys()), max(p[Y] for p in graph.keys
 # More info @ https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
 
 def dijkstra(graph, start, end):
-    visited = set()
+    visited = set() # Track visited nodes, at start, no nodes
 
-    pq = [] # Start an empty Priority Queue for our unvisited nodes
+    pq = [] # Start an empty Priority Queue for our nodes and their distance
 
     # Here we'll keep the distance to the start node, 
     # unknown distances are marked as infinity
     distances = defaultdict(lambda: float('inf')) 
-    
     # We only know that the start is at 0 distance from itself
     distances[start] = 0
+
+    # Initialize our Priority Queue with what we know
     heapq.heappush(pq, (distances[start], start))
         
   
@@ -46,9 +47,11 @@ def dijkstra(graph, start, end):
         # The distance from this node to a neighbor is the current distance plus the risk level
         # So we update all our distances discovered so far
         for neighbor in neighbor_nodes:
-            new_distance = distances[current_node] + graph[neighbor]
+            new_distance = current_distance + graph[neighbor]
             if(new_distance < distances[neighbor]):
+                # Update our distance if found a better one.
                 distances[neighbor] = new_distance
+                # We discovered a new node, so we'll add it to our priority queue
                 heapq.heappush(pq, (new_distance, neighbor))
 
 
