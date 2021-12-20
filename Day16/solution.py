@@ -19,6 +19,7 @@ class BITSDecoder:
         self.stream  = ((4 - remainder) if remainder > 0 else 0) * '0' + self.stream
         self.stream_pointer = 0
         self.version_accumulator = 0
+        # This will help us compute each packet value on the fly based on its children's values
         self.type_map = {
             0: sum,
             1: math.prod,
